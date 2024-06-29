@@ -16,13 +16,13 @@ class _ExpensesState extends State<Expenses> {
   final List<Expense> _registeredExpenses = [
     //dummy expenses
     Expense(
-      title: 'Work',
+      title: 'Work Sample',
       amount: 19.99,
       date: DateTime.now(),
       category: Category.work,
     ),
     Expense(
-      title: 'Cinema',
+      title: 'Cinema Sample',
       amount: 15.49,
       date: DateTime.now(),
       category: Category.leisure,
@@ -74,7 +74,6 @@ class _ExpensesState extends State<Expenses> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
     Widget mainContent = const Center(
       child: Text('No expense found!'),
     );
@@ -114,6 +113,15 @@ class _ExpensesState extends State<Expenses> {
                   child: mainContent,
                 ),
               ],
+            ),
+            bottomNavigationBar: Container(
+              color: const Color.fromARGB(255, 171, 171, 202),
+              padding: const EdgeInsets.all(10),
+              child: const Text(
+                'Made by Agrima :)',
+                style: TextStyle(color: Color.fromARGB(255, 39, 43, 65)),
+                textAlign: TextAlign.center,
+              ),
             ),
     );
   }

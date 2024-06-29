@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:expense_tracker/models/expense.dart';
+import 'package:intl/intl.dart';
 
 class NewExpense extends StatefulWidget {
   const NewExpense({super.key, required this.onAddExpense});
@@ -42,13 +45,13 @@ class _NewExpenseState extends State<NewExpense> {
         context: context,
         builder: (ctx) => AlertDialog(
           title: const Text('Invalid Input'),
-          content: const Text('Please make sure a valid entry was entered'),
+          content: const Text('Looks like something\'s missing! Double-check for typos or missing fields.'),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(ctx);
               },
-              child: const Text('OK'),
+              child: const Text('Okay'),
             ),
           ],
         ),
@@ -65,6 +68,13 @@ class _NewExpenseState extends State<NewExpense> {
     Navigator.pop(context);
   }
 
+  currency(context)
+  {
+    Locale locale = Localizations.localeOf(context);
+    var format = NumberFormat.simpleCurrency(locale: Platform.localeName, name: 'USD');
+    return format;
+  }
+
   @override
   void dispose() {
     _titleContoller.dispose();
@@ -77,7 +87,6 @@ class _NewExpenseState extends State<NewExpense> {
     final keyboardSpace = MediaQuery.of(context).viewInsets.bottom;
     return LayoutBuilder(builder: (ctx, constraints) {
       final width = constraints.maxWidth;
-      final height = constraints.maxHeight;
       return SizedBox(
         height: double.infinity,
         child: SingleChildScrollView(
@@ -105,7 +114,7 @@ class _NewExpenseState extends State<NewExpense> {
                           controller: _amountContoller,
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
-                            prefixText: '\$ ',
+                            prefixText: 'Rs: ',
                             label: Text('Amount'),
                           ),
                         ),
@@ -173,7 +182,7 @@ class _NewExpenseState extends State<NewExpense> {
                           controller: _amountContoller,
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
-                            prefixText: '\$ ',
+                            prefixText: 'Rs: ',
                             label: Text('Amount'),
                           ),
                         ),
