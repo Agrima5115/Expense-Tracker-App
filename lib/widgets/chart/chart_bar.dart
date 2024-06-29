@@ -12,6 +12,15 @@ class ChartBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkMode =
         MediaQuery.of(context).platformBrightness == Brightness.dark;
+    Color getColor() {
+      if (fill >= 0.6) {
+        return Colors.green;
+      } else if (fill >= 0.4) {
+        return Colors.orange;
+      } else {
+        return Colors.red;
+      }
+    }
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -24,7 +33,8 @@ class ChartBar extends StatelessWidget {
                   const BorderRadius.vertical(top: Radius.circular(8)),
               color: isDarkMode
                   ? Theme.of(context).colorScheme.secondary
-                  : Theme.of(context).colorScheme.primary.withOpacity(0.65),
+                  // : Theme.of(context).colorScheme.primary.withOpacity(0.65),
+                  : getColor(),
             ),
           ),
         ),

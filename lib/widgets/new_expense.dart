@@ -68,13 +68,6 @@ class _NewExpenseState extends State<NewExpense> {
     Navigator.pop(context);
   }
 
-  currency(context)
-  {
-    Locale locale = Localizations.localeOf(context);
-    var format = NumberFormat.simpleCurrency(locale: Platform.localeName, name: 'USD');
-    return format;
-  }
-
   @override
   void dispose() {
     _titleContoller.dispose();
@@ -114,7 +107,7 @@ class _NewExpenseState extends State<NewExpense> {
                           controller: _amountContoller,
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
-                            prefixText: 'Rs: ',
+                            prefixText: '\u{20B9} ',
                             label: Text('Amount'),
                           ),
                         ),
@@ -182,7 +175,7 @@ class _NewExpenseState extends State<NewExpense> {
                           controller: _amountContoller,
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
-                            prefixText: 'Rs: ',
+                            prefixText: '\u{20B9} ',
                             label: Text('Amount'),
                           ),
                         ),
